@@ -14,8 +14,8 @@ public class Book {
     private String bookId;
     private String name;
     private String author;
-    private String genre;
+    private String dateRelease;
     private Integer pageNumber;
-    private Integer bookNumber;
+    private String image;
 
 }

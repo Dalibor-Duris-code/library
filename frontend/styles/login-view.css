@@ -1,0 +1,11 @@
+#login-view {
+    display: grid;
+    width: 400px;
+    height: 400px;
+    text-align: center;
+    margin: auto;
+}
+
+:host {
+    display: block;
+}

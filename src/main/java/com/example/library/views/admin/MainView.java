@@ -1,7 +1,8 @@
-package com.example.library.views;
+package com.example.library.views.admin;
 
 import com.example.library.entity.Book;
 import com.example.library.services.BookService;
+import com.example.library.views.AppLayoutBasic;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
@@ -9,7 +10,6 @@ import com.vaadin.flow.router.Route;
 import org.vaadin.crudui.crud.CrudOperation;
 import org.vaadin.crudui.crud.impl.GridCrud;
 
-@Route(value = "", layout = AppLayoutBasic.class)
 @PageTitle("Knihy")
 public class MainView extends VerticalLayout {
 
@@ -49,11 +49,11 @@ public class MainView extends VerticalLayout {
     public void setupCrud()
     {
         crud.getGrid().removeAllColumns();
-        crud.getGrid().addColumns("bookId","name","author","genre","pageNumber","bookNumber");
+        crud.getGrid().addColumns("bookId","name","author","dateRelease","pageNumber","image");
 
         crud.getCrudFormFactory().setUseBeanValidation(true);
-        crud.getCrudFormFactory().setVisibleProperties("name","author","genre","pageNumber","bookNumber");
-        crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, "name","author","genre","pageNumber","bookNumber");
+        crud.getCrudFormFactory().setVisibleProperties("name","author","dateRelease","pageNumber","image");
+        crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, "name","author","dateRelease","pageNumber","image");
         crud.setSizeFull();
 
     }
