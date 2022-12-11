@@ -6,6 +6,8 @@ import com.example.library.views.AppLayoutBasic;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -15,14 +17,17 @@ public class UserView extends VerticalLayout {
 
     private final Grid<Book> gridBook = new Grid<>(Book.class,false);
     private final BookService bookService;
+    private TextField filterText;
     public UserView(BookService service) {
 
         this.bookService = service;
 
         setGrid();
+        setFilter();
         gridBook.asSingleSelect();
 
         add(new H1("Ponuka kníh"),
+                filterText,
                 gridBook
         );
     }
@@ -36,5 +41,14 @@ public class UserView extends VerticalLayout {
         gridBook.addColumn(Book::getImage).setHeader("Obal");
 
         gridBook.setItems(bookService.findAll());
+    }
+
+    private void setFilter()
+    {
+        filterText = new TextField("Názov knihy");
+        filterText.setPlaceholder("Zadajte názov..");
+        filterText.setClearButtonVisible(true);
+        filterText.setValueChangeMode(ValueChangeMode.LAZY);
+        filterText.addValueChangeListener(e -> gridBook.setItems(bookService.findByNameContainingIgnoreCase(filterText.getValue())));
     }
 }
