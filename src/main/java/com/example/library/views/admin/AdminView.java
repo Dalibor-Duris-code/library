@@ -3,6 +3,7 @@ package com.example.library.views.admin;
 import com.example.library.entity.Book;
 import com.example.library.services.BookService;
 import com.example.library.views.AppLayoutBasic;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
@@ -16,7 +17,7 @@ public class AdminView extends VerticalLayout {
 
     private final GridCrud<Book> crud = new GridCrud<>(Book.class);
 
-    private TextField filter = new TextField();
+    private final TextField filter = new TextField();
     private final BookService bookService;
 
     public AdminView(BookService bookService)
@@ -25,11 +26,13 @@ public class AdminView extends VerticalLayout {
 
         filter.setPlaceholder("Filter by book");
         filter.setClearButtonVisible(true);
-        crud.getCrudLayout().addFilterComponent(filter);
+        //crud.getCrudLayout().addFilterComponent(filter);
+        crud.getCrudLayout().addToolbarComponent(filter);
 
         setupCrud();
         setCrudOperations();
-        add(crud);
+        add(new H1("Správa kníh"),
+                crud);
 
     }
 

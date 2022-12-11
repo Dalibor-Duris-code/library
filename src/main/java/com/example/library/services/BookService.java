@@ -39,4 +39,14 @@ public class BookService {
         return repository.findByNameContainingIgnoreCase(name);
     }
 
+    public List<Book> findByAuthorContainingIgnoreCase(String name)
+    {
+     return repository.findByAuthorContainingIgnoreCase(name);
+    }
+
+    public List<Book> findByDateReleaseContainingIgnoreCase(String date)
+    {
+        return repository.findByDateReleaseContainingIgnoreCase(date);
+    }
+
 }
