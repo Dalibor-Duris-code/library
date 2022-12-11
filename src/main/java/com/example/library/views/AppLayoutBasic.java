@@ -45,9 +45,9 @@ public class AppLayoutBasic extends AppLayout {
 
         RouterLink link = new RouterLink();
         link.add(icon, new Span(viewName));
-        // Demo has no routes
+
         link.setRoute(rout);
-        link.setTabIndex(-1);
+        //link.setTabIndex(-1);
 
         return new Tab(link);
     }
