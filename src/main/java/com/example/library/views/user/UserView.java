@@ -40,6 +40,8 @@ public class UserView extends VerticalLayout {
 
     private void setupGrid()
     {
+        gridBook.setSelectionMode(Grid.SelectionMode.MULTI);
+
         gridBook.addColumn(Book::getName).setHeader("Názov");
         gridBook.addColumn(Book::getAuthor).setHeader("Autor");
         gridBook.addColumn(Book::getDateRelease).setHeader("Dátum vydania");
