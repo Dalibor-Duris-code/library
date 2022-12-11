@@ -11,14 +11,15 @@ import org.vaadin.crudui.crud.CrudOperation;
 import org.vaadin.crudui.crud.impl.GridCrud;
 
 @PageTitle("Knihy")
-public class MainView extends VerticalLayout {
+@Route(value = "admin", layout = AppLayoutBasic.class)
+public class AdminView extends VerticalLayout {
 
     private final GridCrud<Book> crud = new GridCrud<>(Book.class);
 
     private TextField filter = new TextField();
     private final BookService bookService;
 
-    public MainView(BookService bookService)
+    public AdminView(BookService bookService)
     {
         this.bookService = bookService;
 

@@ -22,7 +22,6 @@ public class AuthService {
         this.userRepository = userRepository;
     }
 
-
     public void authericate(String username, String password) throws AuthException
     {
         User user = userRepository.getByUsername(username);

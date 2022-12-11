@@ -1,6 +1,7 @@
 package com.example.library.views;
 
-import com.example.library.views.admin.MainView;
+import com.example.library.views.admin.AdminView;
+import com.example.library.views.user.UserView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -29,12 +30,13 @@ public class AppLayoutBasic extends AppLayout {
 
     private Tabs getTabs() {
         Tabs tabs = new Tabs();
-        tabs.add(createTab(VaadinIcon.DASHBOARD, "Knihy"));
+        tabs.add(createTab(VaadinIcon.DASHBOARD, "Knihy", AdminView.class));
+        tabs.add(createTab(VaadinIcon.ABACUS, "Uživatel", UserView.class));
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
         return tabs;
     }
 
-    private Component createTab(VaadinIcon viewIcon, String viewName) {
+    private Component createTab(VaadinIcon viewIcon, String viewName, Class rout) {
         Icon icon = viewIcon.create();
         icon.getStyle().set("box-sizing", "border-box")
                 .set("margin-inline-end", "var(--lumo-space-m)")
@@ -44,7 +46,7 @@ public class AppLayoutBasic extends AppLayout {
         RouterLink link = new RouterLink();
         link.add(icon, new Span(viewName));
         // Demo has no routes
-        link.setRoute(MainView.class);
+        link.setRoute(rout);
         link.setTabIndex(-1);
 
         return new Tab(link);
