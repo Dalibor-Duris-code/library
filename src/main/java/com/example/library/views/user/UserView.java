@@ -28,10 +28,8 @@ public class UserView extends VerticalLayout {
 
         HorizontalLayout filtersLayout = new HorizontalLayout();
 
-        setGrid();
-        setFilter();
-        gridBook.asSingleSelect();
-
+        setupGrid();
+        setupFilters();
         filtersLayout.add(filterText,filterAuthor,filterDate);
 
         add(new H1("Ponuka kníh"),
@@ -40,7 +38,7 @@ public class UserView extends VerticalLayout {
         );
     }
 
-    private void setGrid()
+    private void setupGrid()
     {
         gridBook.addColumn(Book::getName).setHeader("Názov");
         gridBook.addColumn(Book::getAuthor).setHeader("Autor");
@@ -51,7 +49,7 @@ public class UserView extends VerticalLayout {
         gridBook.setItems(bookService.findAll());
     }
 
-    private void setFilter()
+    private void setupFilters()
     {
         filterText = new TextField("Názov knihy");
         filterText.setPlaceholder("Zadajte názov..");
