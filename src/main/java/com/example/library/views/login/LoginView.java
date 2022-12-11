@@ -14,7 +14,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-@Route(value = "login", layout = AppLayoutBasic.class)
+@Route(value = "login")
 @PageTitle("Login")
 @CssImport("./styles/login-view.css")
 public class LoginView extends Div {
@@ -23,11 +23,13 @@ public class LoginView extends Div {
         this.userRepository = userRepository;
         setId("login-view");
 
-        var password = new PasswordField("Password");
-        var username = new TextField("Username");
+        var password = new PasswordField("Heslo");
+        var username = new TextField("Prihlasovacie meno");
+
+        add(new H1("Vítajte na stránke knižnice (krčmy), legiend z izby 39"));
 
         add(
-                new H1("Login"),
+                new H1("Prihlásenie"),
                 username,
                 password,
                 new Button("Login", event -> {
@@ -40,6 +42,5 @@ public class LoginView extends Div {
 
                 })
         );
-
     }
 }
