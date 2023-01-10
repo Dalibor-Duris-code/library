@@ -3,7 +3,9 @@ package com.example.library.views.admin;
 import com.example.library.entity.Book;
 import com.example.library.services.BookService;
 import com.example.library.views.AppLayoutBasic;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
@@ -30,6 +32,8 @@ public class AdminView extends VerticalLayout {
         //filter.setPlaceholder("Filter by book");
         //filter.setClearButtonVisible(true);
         //crud.getCrudLayout().addToolbarComponent(filter);
+
+        this.setSizeFull();
 
         setupFilters();
         setupCrud();
@@ -63,7 +67,7 @@ public class AdminView extends VerticalLayout {
         crud.getGrid().addColumn("name").setHeader("Názov");
         crud.getGrid().addColumn("author").setHeader("Autor");
         crud.getGrid().addColumn("dateRelease").setHeader("Dátum vydania");
-        crud.getGrid().addColumn("image").setHeader("Obal");
+        crud.getGrid().addComponentColumn(this::getThumbnail).setHeader("Obal");
 
         crud.getCrudFormFactory().setUseBeanValidation(true);
         crud.getCrudFormFactory().setVisibleProperties("name","author","dateRelease","pageNumber","image");
@@ -90,5 +94,23 @@ public class AdminView extends VerticalLayout {
         dateFilter.setClearButtonVisible(true);
         dateFilter.setValueChangeMode(ValueChangeMode.LAZY);
         dateFilter.addValueChangeListener(e -> crud.getGrid().setItems(bookService.findByDateReleaseContainingIgnoreCase(dateFilter.getValue())));
+    }
+
+    private Image getThumbnail(Book book)
+    {
+        var image = new Image(book.getImage(), book.getName() +"Cover");
+        image.setHeight("70px");
+        image.addClickListener(e -> showCover(book));
+        return image;
+    }
+
+    private void showCover(Book book)
+    {
+        var image = new Image(book.getImage() ,"Cover");
+        image.setSizeFull();
+
+        var dialog = new Dialog(image);
+        dialog.setHeight("90%");
+        dialog.open();
     }
 }
