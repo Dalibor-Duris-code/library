@@ -4,6 +4,8 @@ import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,8 +16,9 @@ public class Book {
     private String bookId;
     private String name;
     private String author;
-    private String dateRelease;
+    private LocalDate dateRelease;
     private Integer pageNumber;
+    //@Lob
     private String image;
 
 }
