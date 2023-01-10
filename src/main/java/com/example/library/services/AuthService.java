@@ -3,8 +3,6 @@ package com.example.library.services;
 import com.example.library.entity.User;
 import com.example.library.repository.UserRepository;
 import com.vaadin.flow.component.Component;
-import lombok.SneakyThrows;
-import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.stereotype.Service;
 
 @Service

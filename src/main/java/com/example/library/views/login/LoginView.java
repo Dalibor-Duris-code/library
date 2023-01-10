@@ -2,7 +2,6 @@ package com.example.library.views.login;
 
 import com.example.library.repository.UserRepository;
 import com.example.library.services.AuthService;
-import com.example.library.views.AppLayoutBasic;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -26,7 +25,7 @@ public class LoginView extends Div {
         var password = new PasswordField("Heslo");
         var username = new TextField("Prihlasovacie meno");
 
-        add(new H1("Vítajte na stránke knižnice (krčmy), legiend z izby 39"));
+        add(new H1("39 Pub"));
 
         add(
                 new H1("Prihlásenie"),
